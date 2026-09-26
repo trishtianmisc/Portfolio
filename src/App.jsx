@@ -10,6 +10,9 @@ import ProfileCard from "./components/ProfileCard";
 import attnImg from "./assets/attn.png";
 import cabangahanImg from "./assets/Cabangahan.png";
 import movieImg from "./assets/MovieTicketing.png";
+import mkStudioImg from "./assets/MKStudio.png";
+import ventaPosImg from "./assets/VentaPOS.png";
+import xpawImg from "./assets/Xpawsure.png";
 import gcash1 from "./assets/Gcash1.jpg";
 import gcash2 from "./assets/Gcash2.png";
 import gcash3 from "./assets/Gcash3.jpg";
@@ -113,12 +116,47 @@ const techIcons = {
 
 const projects = [
   {
+    badge: "Web App",
+    name: "MK Studio",
+    image: mkStudioImg,
+    pos: "center top",
+    description:
+      "Modern fashion e-commerce storefront with curated collections and an editorial online shopping experience.",
+    tech: ["React Vite", "Tailwind CSS", "Express", "Supabase"],
+    repo: "https://github.com/trishtianmisc/MK-STUDIO",
+    live: "https://mkstudiocollective.com",
+  },
+  {
+    badge: "Full Stack",
+    name: "VentaPOS",
+    image: ventaPosImg,
+    pos: "center top",
+    description:
+      "Point-of-sale and store management console with billing, inventory, team roles, and business reports.",
+    tech: ["React Vite", "Tailwind CSS", "FastAPI", "Supabase"],
+    repo: "https://github.com/trishtianmisc/SVentaPOS",
+    live: "https://frontend-eight-mu-71.vercel.app",
+  },
+  {
     badge: "Full Stack",
     name: "ATTN Store",
     image: attnImg,
     description:
       "Inventory and sales management platform with analytics, built for real-world store operations.",
     tech: ["React Vite", "Django", "PostgreSQL", "Supabase", "Tailwind CSS"],
+    repo: "https://github.com/trishtianmisc/Deploy-ATTN",
+    live: "https://attn-store-frontend-i2l4.vercel.app",
+  },
+  {
+    badge: "Mobile App",
+    name: "XPawSure",
+    image: xpawImg,
+    pos: "center top",
+    description:
+      "An AI-assisted mobile and web platform for canine skin condition preliminary screening.",
+    tech: ["React Native", "React Vite", "Tailwind CSS", "Supabase", "Django"],
+    repo: "https://github.com/trishtianmisc/xPawSure-Capstone",
+    live: "",
   },
   {
     badge: "Desktop App",
@@ -127,6 +165,8 @@ const projects = [
     description:
       "Barangay Management System for efficient governance and transparent operations with automated paper works.",
     tech: ["Python", "PyQt5", "PostgreSQL"],
+    repo: "https://github.com/piadesu/Barangay-Profiling-System_Cabangahan",
+    live: "",
   },
   {
     badge: "Desktop App",
@@ -135,7 +175,10 @@ const projects = [
     description:
       "Modern software solution focused on automation and productivity for cinema ticketing.",
     tech: ["Java", "JavaFX", "FXML", "CSS", "MySQL"],
+    repo: "",
+    live: "",
   },
+  
 ];
 
 export default function App() {
@@ -199,7 +242,7 @@ export default function App() {
   const scrollProjects = (dir) => {
     const track = projectsRef.current;
     if (!track) return;
-    const card = track.querySelector(".project-card");
+    const card = track.querySelector(".project-item");
     const step = card ? card.offsetWidth + 24 : 360;
     track.scrollBy({ left: dir * step, behavior: "smooth" });
   };
@@ -281,7 +324,7 @@ export default function App() {
               <h1>
                 Hi, I'm <span className="highlight">Trishtian Capangpangan</span>
               </h1>
-              <h2>Software Developer &amp; BSIT Student</h2>
+              <h2>BSIT Student | Aspiring Full-Stack Dev</h2>
               <p>
                 I create modern web applications, software solutions, and
                 meaningful digital experiences. Passionate about turning ideas
@@ -446,47 +489,75 @@ export default function App() {
             onPointerLeave={onTrackPointerUp}
           >
             {projects.map((project) => (
-              <div className="project-card scroll-animate-scale" key={project.name}>
-                <div className="content">
-                  <div className="front">
-                    <img
-                      className="project-image"
-                      src={project.image}
-                      alt={project.name}
-                      loading="lazy"
-                      draggable="false"
-                    />
-                    <div className="front-shade"></div>
+              <div className="project-item" key={project.name}>
+                <div className="project-card scroll-animate-scale">
+                  <div className="content">
+                    <div className="front">
+                      <img
+                        className="project-image"
+                        src={project.image}
+                        alt={project.name}
+                        loading="lazy"
+                        draggable="false"
+                        style={{ objectPosition: project.pos || "center" }}
+                      />
+                      <div className="front-shade"></div>
 
-                    <div className="front-content">
-                      <small className="badge">{project.badge}</small>
-                      <div className="description">
-                        <div className="title">
-                          <p className="title">
-                            <strong>{project.name}</strong>
-                          </p>
-                          <i className="fa-solid fa-arrow-up-right-from-square project-arrow"></i>
-                        </div>
-                        <p className="card-footer">{project.description}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="back">
-                    <div className="back-content">
-                      <div className="tech-stack">
-                        <h3>Technologies Used</h3>
-                        <div className="tech-items">
-                          {project.tech.map((tech) => (
-                            <div className="tech-item" key={tech}>
-                              <i className={techIcons[tech] || "fa-solid fa-code"}></i>
-                              <span>{tech}</span>
-                            </div>
-                          ))}
+                      <div className="front-content">
+                        <small className="badge">{project.badge}</small>
+                        <div className="description">
+                          <div className="title">
+                            <p className="title">
+                              <strong>{project.name}</strong>
+                            </p>
+                            <i className="fa-solid fa-arrow-up-right-from-square project-arrow"></i>
+                          </div>
+                          <p className="card-footer">{project.description}</p>
                         </div>
                       </div>
                     </div>
+
+                    <div className="back">
+                      <div className="back-content">
+                        <div className="tech-stack">
+                          <h3>Technologies Used</h3>
+                          <div className="tech-items">
+                            {project.tech.map((tech) => (
+                              <div className="tech-item" key={tech}>
+                                <i className={techIcons[tech] || "fa-solid fa-code"}></i>
+                                <span>{tech}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                </div>
+
+                <div className="project-links">
+                  {project.repo && (
+                    <a
+                      className="project-link"
+                      href={project.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="fa-brands fa-github"></i>
+                      GitHub
+                    </a>
+                  )}
+                  {project.live && (
+                    <a
+                      className="project-link project-link-live"
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <i className="fa-solid fa-globe"></i>
+                      Visit Website
+                    </a>
+                  )}
                 </div>
               </div>
             ))}
@@ -509,7 +580,7 @@ export default function App() {
               <span className="feature-badge">Top 10 Finalist</span>
               <h3>GCash ImagNation Hackathon 2026</h3>
               <p>
-                Selected as one of the Top 10 challenger teams at the GCash
+                Selected as one of the Top 10 challenger teams out of 366 teams at the GCash
                 ImagNation Innovation Challenge, with the theme
                 &ldquo;Negosyo Nation: Powering the Next Gen Filipino
                 Entrepreneurs.&rdquo;
@@ -522,7 +593,7 @@ export default function App() {
                   <i className="fas fa-users"></i> Team KitaClick
                 </span>
                 <span>
-                  <i className="fas fa-location-dot"></i> GCash Office
+                  <i className="fas fa-location-dot"></i> Manila BGC, GCash Office
                 </span>
               </div>
             </div>
@@ -578,16 +649,16 @@ export default function App() {
               </div>
 
               <div className="social-links">
-                <a href="#" className="social-link" aria-label="GitHub">
+                <a href="https://github.com/trishtianmisc/Portfolio" className="social-link" aria-label="GitHub">
                   <i className="fab fa-github"></i>
                 </a>
-                <a href="#" className="social-link" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/trishtian-capangpangan-85757a2a2/" className="social-link" aria-label="LinkedIn">
                   <i className="fab fa-linkedin"></i>
                 </a>
-                <a href="#" className="social-link" aria-label="Facebook">
+                <a href="https://www.facebook.com/7McTian" className="social-link" aria-label="Facebook">
                   <i className="fab fa-facebook"></i>
                 </a>
-                <a href="#" className="social-link" aria-label="Instagram">
+                <a href="https://www.instagram.com/trishtiancap/" className="social-link" aria-label="Instagram">
                   <i className="fab fa-instagram"></i>
                 </a>
               </div>
